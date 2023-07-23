@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <%- include("../../setups/head") %>
+</head>
+
+<body>
+  <%- include("../../components/navbar") %>
+
+  <section id="home-content" class="container">
+    <div class="my-5">
+      <div class="align-items-center d-flex justify-content-between mt-5 mb-4">
+        <h3>Detail</h3>
+      </div>
+      <div class="d-flex">
+        <div>
+          <img class="border mb-3" width="350"
+            src="/uploads/<%= shoe.img %>"
+            alt="shoe" />
+        </div>
+        <div class="ms-5">
+          <h5><%= shoe.merk %></h5>
+          <h2><%= shoe.name %></h2>
+          <p class="h6 my-4">Availability : <%= shoe.available %></p>
+          <p class="h5">Rp <%= shoe.price %></p>
+          <p class="my-4">Hurry up! Only <%= shoe.qty %> product left in stock!</p>
+          <p class="my-4">Category : <%= shoe.category.name %></p>
+
+          <p><%= shoe.desc %></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <%- include("../../setups/script") %>
+
+</html>

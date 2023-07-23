@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include("../../setups/head") %>
+  </head>
+
+  <body>
+    <%- include("../../components/navbar") %>
+
+    <section id="home-content" class="container">
+      <div class="align-items-center d-flex justify-content-between mt-5 mb-4">
+        <h3>Shoe List</h3>
+        <a href="/shoe/create" class="btn btn-outline-primary"> Add </a>
+      </div>
+
+      <% if(shoes.length < 1){ %>
+      <h3 class="text-center">No Data</h13>
+      <% }else{ %>
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Name</th>
+            <th scope="col">Merk</th>
+            <th scope="col">Quantity</th>
+            <th scope="col">Category</th>
+            <th scope="col">Status</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% shoes.forEach((shoe) => { %>
+          <tr>
+            <th scope="row"><%= shoe.id %></th>
+            <td><%= shoe.name %></td>
+            <td><%= shoe.merk %></td>
+            <td><%= shoe.qty %></td>
+            <td><%= shoe.category.name %></td>
+            <td><%= shoe.available ? "In-Stock" : "Out-Stock" %></td>
+            <td class="d-flex gap-2">
+              <a href="/shoe/<%= shoe.id %>" class="btn btn-sm btn-light">
+                <i class="bi bi-eye"></i>
+              </a>
+              <a href="/shoe/<%= shoe.id %>/edit" class="btn btn-sm btn-light">
+                <i class="bi bi-pencil-square"></i>
+              </a>
+              <form method="post" action="/shoe/<%= shoe.id %>/delete">
+                <button type="submit" class="btn btn-sm btn-light">
+                  <i class="bi bi-trash"></i>
+                </button>
+              </form>
+            </td>
+          </tr>
+          <% }) %>
+        </tbody>
+      </table>
+      <% } %>
+    </section>
+
+    <%- include("../../setups/script") %>
+  </body>
+</html>
